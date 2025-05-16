@@ -1,3 +1,4 @@
+
 # Logging.
 [logging]
 
@@ -87,7 +88,8 @@
 
   # interface:port to bind the API interface to.
   bind="0.0.0.0:8080"
-
+  cors_allowed_origins=["*"]
+  # List of allowed origins, use "*" to allow all domains, or specify your domain like "http://example.com"
   # Secret.
   #
   # This secret is used for generating login and API tokens, make sure this
@@ -98,8 +100,13 @@
 
 
 [integration]
-  enabled=["mqtt"]
+  enabled=["mqtt","postgresql"]
 
   [integration.mqtt]
     server="tcp://$MQTT_BROKER_HOST:1883/"
     json=true
+  [integration.postgresql]
+    dsn="postgres://chirpstack_integration:chirpstack_integration@$POSTGRESQL_HOST/chirpstack_integration?sslmode=disable"
+[grpc]
+# Bind to all interfaces on port 8000 so that the container exposes it.
+bind = "0.0.0.0:8000"

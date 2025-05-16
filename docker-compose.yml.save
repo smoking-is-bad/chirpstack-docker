@@ -1,4 +1,3 @@
-
 services:
   chirpstack:
     image: chirpstack/chirpstack:4
@@ -34,6 +33,7 @@ services:
   chirpstack-gateway-bridge-basicstation:
     image: chirpstack/chirpstack-gateway-bridge:4
     restart: unless-stopped
+cd ..
     command: -c /etc/chirpstack-gateway-bridge/chirpstack-gateway-bridge-basicstation-as923.toml
     ports:
       - "3001:3001"
